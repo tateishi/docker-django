@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  django:
+    build:
+      context: ./django
+    tty: true
+    ports:
+      - 8000:8000
+    volumes:
+      - app:/usr/src/app
+
+  fb:
+    build:
+      context: ./filebrowser
+    ports:
+      - "8081:80"
+    volumes:
+      - fb:/config
+      - app:/data
+
+volumes:
+  app:
+  fb:
